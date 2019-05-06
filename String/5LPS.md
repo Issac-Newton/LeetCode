@@ -120,3 +120,39 @@ PS. 突然想到为什么使用`int`对上述方案不行，因为上面程序�
 
 好多事不做一遍真的不知道是什么样子呀
 
+Approach 2:
+在上面的基础上进行进一步分析，上面使用二维数组的目的是记录一个子串是不是回文串，这样能够让包含这个子串的更长的子串进行判断时更省时。如果不用数组，那么每个子串的分析就会变成O(n)，这是一个难以承受的代价。
+
+其实回文串有一些性质，它的“中心”来自于一个字符或者是两个字符，一个字符的情况不用多说，两个字符代表这两个字符相同如:baab,“中心”是 “aa”。既然知道了这一性质，可以利用它来对程序进行修改。
+
+	class Solution {
+	public:
+	    string longestPalindrome(string s) {
+	        if(s.size() <= 1) return s;
+	        int max_len = 1,sta = 0,len = s.size();
+	        for(int i = 0;i < len-1;i++){
+	            int j = 0;
+	            while(i-j>=0 && i+j<len && s[i-j]==s[i+j]) j++;
+	            if(2*(j-1)+1 > max_len){
+	                max_len = 2*(j-1) + 1; sta = i-j+1;
+	            }
+	            if(s[i] == s[i+1]){
+	                j = 0;
+	                while(i-j>=0 && i+1+j<len && s[i-j]==s[i+1+j]) j++;
+	                if(2*(j-1)+2 > max_len){
+	                    max_len = 2*(j-1) + 2; sta = i-j+1;
+	                }
+	            }
+	        }
+	        return s.substr(sta,max_len);
+	    }
+	};
+
+上面是现在修改的最精简的一个版本了。
+
+改进效果如下：
+![third_runtime](third_runtime.jpg)
+![third_memory](third_memory.jpg)
+
+PS.后来看到一个DL的代码，遍历的时候直接跳过了相同的子串，这样就没有“中心”是一个字符还是两个字符的区别了，之后在这个子串两边进行回文串检测，真是高呀。。
+
