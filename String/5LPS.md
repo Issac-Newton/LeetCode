@@ -49,9 +49,9 @@ Approach1：
 
 但是效果不是特别好，内存、时间都用的多。
 
-![first_runtime](first_runtime.jpg)
+![first_runtime](5LPS/first_runtime.jpg)
 
-![first_memory](first_memory.jpg)
+![first_memory](5LPS/first_memory.jpg)
 
 **后来查了一下，dp中的状态矩阵可以使用二进制简化，更改之后的代码如下：**
 
@@ -99,9 +99,9 @@ Approach1：
 
 改了之后的效果如下：
 
-![second_runtime](second_runtime.jpg)
+![second_runtime](5LPS/second_runtime.jpg)
 
-![second_memory](second_memory.jpg)
+![second_memory](5LPS/second_memory.jpg)
 
 更改的方式主要是将每个存状态的变量由int转为了bit，节省了将近32倍的空间
 
@@ -151,8 +151,8 @@ Approach 2:
 上面是现在修改的最精简的一个版本了。
 
 改进效果如下：
-![third_runtime](third_runtime.jpg)
-![third_memory](third_memory.jpg)
+![third_runtime](5LPS/third_runtime.jpg)
+![third_memory](5LPS/third_memory.jpg)
 
 PS.后来看到一个DL的代码，遍历的时候直接跳过了相同的子串，这样就没有“中心”是一个字符还是两个字符的区别了，之后在这个子串两边进行回文串检测，真是高呀。。
 
