@@ -41,11 +41,11 @@
             
             int len = s.size();
             string result = "";
-            int divide = 2 * (numRows - 1);
+            int divide = 2 * (numRows - 1);  //对于“循环节”的理解上并没有太大区别
             for(int i = 0;i < numRows;i++){
                 for(int j = 0;j + i < len;j += divide){
                     result.push_back(s[j + i]);
-                    if(i!=0 && i!=numRows-1 && j+divide-i<len)
+                    if(i!=0 && i!=numRows-1 && j+divide-i<len)   //这句是差别最大的地方
                         result.push_back(s[j+divide-i]);
                 }
             }
@@ -55,7 +55,7 @@
 
 其实感觉自己最开始的代码和后来这个代码的区别还是在于：**对非两端的行的字母下标查找上理解不同** 
 
-下面这份代码计算中间每个字母的递推式要比我的更简单。
+下面这份代码计算中间每个字母的递推式要比我的更简单。 `j+divide-i` 这里的j并不是一个循环节中的第一个字符所在的位置，`j+i`才是第一个字符所在的位置。所以，`j+divide-i` 相当于是 `j+i+divide-2i`, `divide-2i`就是一个循环节中第一个字符和第二个字符相差的距离了。
 
 提交了以下，空间复杂度上略有改进，用的时间到了12ms，这在这道题上算是一个天堑了。。
 
@@ -97,8 +97,9 @@
 
 逻辑上并没有什么大的区别，但是最上面的写的那段加速的代码实在是高。
 
-最上面那段是关闭使用cin、cout的缓冲区同步的，使用cin，cout这类流输出是要输出到缓冲区中再到终端。但是scanf，printf这类原生的输入输出不会经过缓冲区，因此要快一些。
+最上面那段是关闭使用cin、cout的缓冲区同步的，使用cin，cout这类流IO方式是要输出到缓冲区中再到终端。但是scanf，printf这类原生的输入输出不会经过缓冲区，因此要快一些。
 
 ios::sync_with_stdio(false)可以关闭这个同步，因此要快一些。
 
+下面代码另外特别到位的一点在于写的代码十分规范，
 [参考](https://www.cnblogs.com/PrayG/p/5749832.html)
