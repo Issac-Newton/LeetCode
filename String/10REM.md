@@ -81,7 +81,6 @@
 
 ![runtime](10REM/runtime.jpg)
 
-<center>测试</center>
 
 ![memory](10REM/memory.jpg)
 
