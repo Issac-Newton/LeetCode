@@ -79,7 +79,8 @@
 
 最开始的结果是这样的
 
-![runtime](10REM/runtime.jpg)
+<div align="center">![runtime](10REM/runtime.jpg)
+测试</div>
 
 ![memory](10REM/memory.jpg)
 
